@@ -4,7 +4,10 @@ import { StyleSheet, View, ImageBackground } from "react-native";
 export default function App() {
   return (
     <View style={styles.container}>
-      <ImageBackground source={}></ImageBackground>
+      <ImageBackground
+        style={styles.image}
+        source={require("./assets/images/photo-bg.jpg")}
+      ></ImageBackground>
       <StatusBar style="auto" />
     </View>
   );
@@ -15,6 +18,11 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
+    justifyContent: "center",
+  },
+  image: {
+    flex: 1,
+    resizeMode: "cover",
     justifyContent: "center",
   },
 });
