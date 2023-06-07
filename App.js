@@ -28,10 +28,8 @@ const styles = StyleSheet.create({
   },
   input: {
     borderWidth: 1,
-    borderColor: "#E8E8E8",
     height: 50,
     borderRadius: 8,
-    backgroundColor: "#F6F6F6",
     marginHorizontal: 16,
   },
 });
