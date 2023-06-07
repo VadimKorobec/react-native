@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View, ImageBackground } from "react-native";
+import { StyleSheet, View, ImageBackground, TextInput } from "react-native";
 
 export default function App() {
   return (
@@ -8,7 +8,7 @@ export default function App() {
         style={styles.image}
         source={require("./assets/images/photo-bg.jpg")}
       >
-        <Text>Hello World</Text>
+        <TextInput style={styles.input} />
       </ImageBackground>
       <StatusBar style="auto" />
     </View>
@@ -19,12 +19,19 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
   },
   image: {
     flex: 1,
     resizeMode: "cover",
     justifyContent: "center",
+    // alignItems: "center",
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: "#E8E8E8",
+    height: 50,
+    borderRadius: 8,
+    backgroundColor: "#F6F6F6",
+    marginHorizontal: 16,
   },
 });
