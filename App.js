@@ -4,6 +4,7 @@ import { StyleSheet, View, ImageBackground } from "react-native";
 export default function App() {
   return (
     <View style={styles.container}>
+      <ImageBackground source={}></ImageBackground>
       <StatusBar style="auto" />
     </View>
   );
