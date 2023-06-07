@@ -7,7 +7,9 @@ export default function App() {
       <ImageBackground
         style={styles.image}
         source={require("./assets/images/photo-bg.jpg")}
-      ></ImageBackground>
+      >
+        <Text>Hello World</Text>
+      </ImageBackground>
       <StatusBar style="auto" />
     </View>
   );
