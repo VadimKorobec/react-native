@@ -6,7 +6,7 @@ export default function App() {
     <View style={styles.container}>
       <ImageBackground
         style={styles.image}
-        source={require("./assets/images/photo.bg.jpg")}
+        source={require("./assets/images/photo-bg.jpg")}
       >
         <TextInput style={styles.input} />
       </ImageBackground>
