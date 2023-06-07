@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     height: 50,
     backgroundColor: "#F6F6F6",
+    borderColor: "#E8E8E8",
     borderRadius: 8,
     marginHorizontal: 16,
   },
