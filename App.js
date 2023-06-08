@@ -39,7 +39,7 @@ export default function App() {
             />
           </View>
           <TouchableOpacity style={styles.btn}>
-            <Text style={styles.text}>Зареєстуватися</Text>
+            <Text style={styles.btnTitle}>Зареєстуватися</Text>
           </TouchableOpacity>
         </View>
       </ImageBackground>
@@ -76,10 +76,10 @@ const styles = StyleSheet.create({
     height: 51,
     borderRadius: 100,
     marginTop: 43,
-  },
-  text: {
     justifyContent: "center",
-    textAlign: "center",
+    alignItems: "center",
+  },
+  btnTitle: {
     color: "#fff",
     fontSize: 16,
   },
