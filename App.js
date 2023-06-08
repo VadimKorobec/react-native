@@ -1,5 +1,12 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View, ImageBackground, TextInput } from "react-native";
+import {
+  StyleSheet,
+  View,
+  ImageBackground,
+  TextInput,
+  TouchableOpacity,
+  Text,
+} from "react-native";
 
 export default function App() {
   return (
@@ -10,8 +17,30 @@ export default function App() {
       >
         <View style={styles.form}>
           <View>
-            <TextInput style={styles.input} textAlign="left" />
+            <TextInput
+              style={styles.input}
+              textAlign="left"
+              placeholder="Логін"
+            />
           </View>
+          <View style={{ marginTop: 16 }}>
+            <TextInput
+              style={styles.input}
+              textAlign="left"
+              placeholder="Адреса електронної пошти"
+            />
+          </View>
+          <View style={{ marginTop: 16 }}>
+            <TextInput
+              style={styles.input}
+              textAlign="left"
+              secureTextEntry={true}
+              placeholder="Пароль"
+            />
+          </View>
+          <TouchableOpacity style={styles.btn}>
+            <Text style={styles.text}>Зареєстуватися</Text>
+          </TouchableOpacity>
         </View>
       </ImageBackground>
       <StatusBar style="auto" />
@@ -34,10 +63,24 @@ const styles = StyleSheet.create({
     borderColor: "#E8E8E8",
     borderRadius: 8,
     backgroundColor: "#F6F6F6",
-    marginHorizontal: 16,
     height: 50,
     color: "#212121",
     paddingLeft: 16,
+    fontSize: 16,
   },
-  form: {},
+  form: {
+    marginHorizontal: 16,
+  },
+  btn: {
+    backgroundColor: "#FF6C00",
+    height: 51,
+    borderRadius: 100,
+    marginTop: 43,
+  },
+  text: {
+    justifyContent: "center",
+    textAlign: "center",
+    color: "#fff",
+    fontSize: 16,
+  },
 });
