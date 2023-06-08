@@ -6,6 +6,7 @@ import {
   TextInput,
   TouchableOpacity,
   Text,
+  Platform,
 } from "react-native";
 
 export default function App() {
@@ -38,7 +39,7 @@ export default function App() {
               placeholder="Пароль"
             />
           </View>
-          <TouchableOpacity style={styles.btn}>
+          <TouchableOpacity style={styles.btn} activeOpacity={0.8}>
             <Text style={styles.btnTitle}>Зареєстуватися</Text>
           </TouchableOpacity>
         </View>
@@ -56,7 +57,7 @@ const styles = StyleSheet.create({
   image: {
     flex: 1,
     resizeMode: "cover",
-    justifyContent: "center",
+    justifyContent: "flex-end",
   },
   input: {
     borderWidth: 1,
