@@ -26,7 +26,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   input: {
+    borderWidth: 1,
+    borderColor: "#E8E8E8",
     borderRadius: 8,
-    backgroundColor: "#dcdcdc",
+    backgroundColor: "#F6F6F6",
+    marginHorizontal: 16,
+    height: 50,
+    color: "#212121",
   },
 });
