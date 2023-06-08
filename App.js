@@ -8,7 +8,7 @@ export default function App() {
         style={styles.image}
         source={require("./assets/images/photo-bg.jpg")}
       >
-        <TextInput style={styles.input} />
+        <TextInput style={styles.input} textAlign="left" />
       </ImageBackground>
       <StatusBar style="auto" />
     </View>
@@ -33,5 +33,6 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
     height: 50,
     color: "#212121",
+    paddingLeft: 16,
   },
 });
