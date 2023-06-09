@@ -13,8 +13,15 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 
+const initialState = {
+  login: "",
+  email: "",
+  password: "",
+};
+
 export default function App() {
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
+  const [state, setState] = useState("");
 
   const keyboardHide = () => {
     setIsShowKeyboard(false);
