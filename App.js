@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Text,
   Platform,
+  KeyboardAvoidingView,
 } from "react-native";
 
 export default function App() {
@@ -16,33 +17,35 @@ export default function App() {
         style={styles.image}
         source={require("./assets/images/photo-bg.jpg")}
       >
-        <View style={styles.form}>
-          <View>
-            <TextInput
-              style={styles.input}
-              textAlign="left"
-              placeholder="Логін"
-            />
+        <KeyboardAvoidingView>
+          <View style={styles.form}>
+            <View>
+              <TextInput
+                style={styles.input}
+                textAlign="left"
+                placeholder="Логін"
+              />
+            </View>
+            <View style={{ marginTop: 16 }}>
+              <TextInput
+                style={styles.input}
+                textAlign="left"
+                placeholder="Адреса електронної пошти"
+              />
+            </View>
+            <View style={{ marginTop: 16 }}>
+              <TextInput
+                style={styles.input}
+                textAlign="left"
+                secureTextEntry={true}
+                placeholder="Пароль"
+              />
+            </View>
+            <TouchableOpacity style={styles.btn} activeOpacity={0.8}>
+              <Text style={styles.btnTitle}>Зареєстуватися</Text>
+            </TouchableOpacity>
           </View>
-          <View style={{ marginTop: 16 }}>
-            <TextInput
-              style={styles.input}
-              textAlign="left"
-              placeholder="Адреса електронної пошти"
-            />
-          </View>
-          <View style={{ marginTop: 16 }}>
-            <TextInput
-              style={styles.input}
-              textAlign="left"
-              secureTextEntry={true}
-              placeholder="Пароль"
-            />
-          </View>
-          <TouchableOpacity style={styles.btn} activeOpacity={0.8}>
-            <Text style={styles.btnTitle}>Зареєстуватися</Text>
-          </TouchableOpacity>
-        </View>
+        </KeyboardAvoidingView>
       </ImageBackground>
       <StatusBar style="auto" />
     </View>
