@@ -9,63 +9,75 @@ import {
   Text,
   Platform,
   KeyboardAvoidingView,
+  Keyboard,
+  TouchableWithoutFeedback,
 } from "react-native";
 
 export default function App() {
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
 
+  const keyboardHide = () => {
+    setIsShowKeyboard(false);
+    Keyboard.dismiss();
+  };
+
   return (
-    <View style={styles.container}>
-      <ImageBackground
-        style={styles.image}
-        source={require("./assets/images/photo-bg.jpg")}
-      >
-        <KeyboardAvoidingView
-          behavior={Platform.OS == "ios" ? "padding" : "height"}
+    <TouchableWithoutFeedback onPress={keyboardHide}>
+      <View style={styles.container}>
+        <ImageBackground
+          style={styles.image}
+          source={require("./assets/images/photo-bg.jpg")}
         >
-          <View
-            style={{ ...styles.form, marginBottom: isShowKeyboard ? 20 : 78 }}
+          <KeyboardAvoidingView
+            behavior={Platform.OS == "ios" ? "padding" : "height"}
           >
-            <View>
-              <TextInput
-                style={styles.input}
-                textAlign="left"
-                placeholder="Логін"
-                onFocus={() => setIsShowKeyboard(true)}
-              />
-            </View>
-            <View style={{ marginTop: 16 }}>
-              <TextInput
-                style={styles.input}
-                textAlign="left"
-                placeholder="Адреса електронної пошти"
-                onFocus={() => setIsShowKeyboard(true)}
-              />
-            </View>
-            <View style={{ marginTop: 16 }}>
-              <TextInput
-                style={styles.input}
-                textAlign="left"
-                secureTextEntry={true}
-                placeholder="Пароль"
-                onFocus={() => setIsShowKeyboard(true)}
-              />
-            </View>
-            <TouchableOpacity
-              style={styles.btn}
-              activeOpacity={0.8}
-              onPress={() => setIsShowKeyboard(false)}
+            <View
+              style={{ ...styles.form, marginBottom: isShowKeyboard ? 20 : 78 }}
             >
-              <Text style={styles.btnTitle}>Зареєстуватися</Text>
-            </TouchableOpacity>
-            <View style={styles.textWrapper}>
-              <Text style={styles.textForm}>Вже є акаунт? Увійти</Text>
+              <View style={styles.header}>
+                <Text style={styles.textHeader}>Реєстрація</Text>
+              </View>
+              <View>
+                <TextInput
+                  style={styles.input}
+                  textAlign="left"
+                  placeholder="Логін"
+                  onFocus={() => setIsShowKeyboard(true)}
+                />
+              </View>
+              <View style={{ marginTop: 16 }}>
+                <TextInput
+                  style={styles.input}
+                  textAlign="left"
+                  placeholder="Адреса електронної пошти"
+                  onFocus={() => setIsShowKeyboard(true)}
+                />
+              </View>
+              <View style={{ marginTop: 16 }}>
+                <TextInput
+                  style={styles.input}
+                  textAlign="left"
+                  secureTextEntry={true}
+                  placeholder="Пароль"
+                  onFocus={() => setIsShowKeyboard(true)}
+                />
+              </View>
+              <TouchableOpacity
+                style={styles.btn}
+                activeOpacity={0.8}
+                onPress={keyboardHide}
+              >
+                <Text style={styles.btnTitle}>Зареєстуватися</Text>
+              </TouchableOpacity>
+              <View style={styles.textWrapper}>
+                <Text style={styles.textForm}>Вже є акаунт? Увійти</Text>
+              </View>
             </View>
-          </View>
-        </KeyboardAvoidingView>
-      </ImageBackground>
-      <StatusBar style="auto" />
-    </View>
+          </KeyboardAvoidingView>
+        </ImageBackground>
+        <StatusBar style="auto" />
+      </View>
+    </TouchableWithoutFeedback>
   );
 }
 
@@ -78,6 +90,14 @@ const styles = StyleSheet.create({
     flex: 1,
     resizeMode: "cover",
     justifyContent: "flex-end",
+  },
+  header: {
+    alignItems: "center",
+    marginBottom: 33,
+  },
+  textHeader: {
+    fontSize: 30,
+    color: "#212121",
   },
   input: {
     borderWidth: 1,
