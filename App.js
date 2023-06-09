@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
@@ -11,19 +12,24 @@ import {
 } from "react-native";
 
 export default function App() {
+  const [isShowKeyboard, setIsShowKeyboard] = useState(false);
+
   return (
     <View style={styles.container}>
       <ImageBackground
         style={styles.image}
         source={require("./assets/images/photo-bg.jpg")}
       >
-        <KeyboardAvoidingView>
+        <KeyboardAvoidingView
+          behavior={Platform.OS == "ios" ? "padding" : "height"}
+        >
           <View style={styles.form}>
             <View>
               <TextInput
                 style={styles.input}
                 textAlign="left"
                 placeholder="Логін"
+                onFocus={() => {}}
               />
             </View>
             <View style={{ marginTop: 16 }}>
@@ -44,6 +50,9 @@ export default function App() {
             <TouchableOpacity style={styles.btn} activeOpacity={0.8}>
               <Text style={styles.btnTitle}>Зареєстуватися</Text>
             </TouchableOpacity>
+            <View style={styles.textWrapper}>
+              <Text style={styles.textForm}>Вже є акаунт? Увійти</Text>
+            </View>
           </View>
         </KeyboardAvoidingView>
       </ImageBackground>
@@ -85,6 +94,15 @@ const styles = StyleSheet.create({
   },
   btnTitle: {
     color: "#fff",
+    fontSize: 16,
+  },
+  textWrapper: {
+    alignItems: "center",
+    marginTop: 16,
+    marginBottom: 78,
+  },
+  textForm: {
+    color: "#1B4371",
     fontSize: 16,
   },
 });
