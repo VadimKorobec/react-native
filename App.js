@@ -23,7 +23,15 @@ const initialState = {
 export default function App() {
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   const [state, setState] = useState(initialState);
-  const [fontsLoaded] = useFonts({});
+  const [fontsLoaded] = useFonts({
+    "Roboto-400": require("./assets/fonts/Roboto-Regular.ttf"),
+    "Roboto-500": require("./assets/fonts/Roboto-Medium.ttf"),
+    "Roboto-700": require("./assets/fonts/Roboto-Bold.ttf"),
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
 
   const keyboardHide = () => {
     setIsShowKeyboard(false);
@@ -120,6 +128,7 @@ const styles = StyleSheet.create({
   textHeader: {
     fontSize: 30,
     color: "#212121",
+    fontFamily: "Roboto-500",
   },
   input: {
     borderWidth: 1,
@@ -145,6 +154,7 @@ const styles = StyleSheet.create({
   btnTitle: {
     color: "#fff",
     fontSize: 16,
+    fontFamily: "Roboto-400",
   },
   textWrapper: {
     alignItems: "center",
@@ -153,5 +163,6 @@ const styles = StyleSheet.create({
   textForm: {
     color: "#1B4371",
     fontSize: 16,
+    fontFamily: "Roboto-400",
   },
 });
