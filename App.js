@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
@@ -21,11 +22,13 @@ const initialState = {
 
 export default function App() {
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
-  const [state, setState] = useState("");
+  const [state, setState] = useState(initialState);
+  const [fontsLoaded] = useFonts({});
 
   const keyboardHide = () => {
     setIsShowKeyboard(false);
     Keyboard.dismiss();
+    setState(initialState);
   };
 
   return (
@@ -49,7 +52,11 @@ export default function App() {
                   style={styles.input}
                   textAlign="left"
                   placeholder="Логін"
+                  value={state.login}
                   onFocus={() => setIsShowKeyboard(true)}
+                  onChangeText={(value) =>
+                    setState((prevState) => ({ ...prevState, login: value }))
+                  }
                 />
               </View>
               <View style={{ marginTop: 16 }}>
@@ -57,7 +64,11 @@ export default function App() {
                   style={styles.input}
                   textAlign="left"
                   placeholder="Адреса електронної пошти"
+                  value={state.email}
                   onFocus={() => setIsShowKeyboard(true)}
+                  onChangeText={(value) =>
+                    setState((prevState) => ({ ...prevState, email: value }))
+                  }
                 />
               </View>
               <View style={{ marginTop: 16 }}>
@@ -66,7 +77,11 @@ export default function App() {
                   textAlign="left"
                   secureTextEntry={true}
                   placeholder="Пароль"
+                  value={state.password}
                   onFocus={() => setIsShowKeyboard(true)}
+                  onChangeText={(value) =>
+                    setState((prevState) => ({ ...prevState, password: value }))
+                  }
                 />
               </View>
               <TouchableOpacity
