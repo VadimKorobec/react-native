@@ -23,13 +23,15 @@ export default function App() {
         <KeyboardAvoidingView
           behavior={Platform.OS == "ios" ? "padding" : "height"}
         >
-          <View style={styles.form}>
+          <View
+            style={{ ...styles.form, marginBottom: isShowKeyboard ? 20 : 78 }}
+          >
             <View>
               <TextInput
                 style={styles.input}
                 textAlign="left"
                 placeholder="Логін"
-                onFocus={() => {}}
+                onFocus={() => setIsShowKeyboard(true)}
               />
             </View>
             <View style={{ marginTop: 16 }}>
@@ -37,6 +39,7 @@ export default function App() {
                 style={styles.input}
                 textAlign="left"
                 placeholder="Адреса електронної пошти"
+                onFocus={() => setIsShowKeyboard(true)}
               />
             </View>
             <View style={{ marginTop: 16 }}>
@@ -45,9 +48,14 @@ export default function App() {
                 textAlign="left"
                 secureTextEntry={true}
                 placeholder="Пароль"
+                onFocus={() => setIsShowKeyboard(true)}
               />
             </View>
-            <TouchableOpacity style={styles.btn} activeOpacity={0.8}>
+            <TouchableOpacity
+              style={styles.btn}
+              activeOpacity={0.8}
+              onPress={() => setIsShowKeyboard(false)}
+            >
               <Text style={styles.btnTitle}>Зареєстуватися</Text>
             </TouchableOpacity>
             <View style={styles.textWrapper}>
@@ -99,7 +107,6 @@ const styles = StyleSheet.create({
   textWrapper: {
     alignItems: "center",
     marginTop: 16,
-    marginBottom: 78,
   },
   textForm: {
     color: "#1B4371",
