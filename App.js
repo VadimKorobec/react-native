@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 import {
@@ -12,6 +12,7 @@ import {
   KeyboardAvoidingView,
   Keyboard,
   TouchableWithoutFeedback,
+  Dimensions,
 } from "react-native";
 
 const initialState = {
@@ -23,11 +24,26 @@ const initialState = {
 export default function App() {
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   const [state, setState] = useState(initialState);
+  const [dimensions, setDimensions] = useState(
+    Dimensions.get("window").width - 16 * 2
+  );
+
   const [fontsLoaded] = useFonts({
     "Roboto-400": require("./assets/fonts/Roboto-Regular.ttf"),
     "Roboto-500": require("./assets/fonts/Roboto-Medium.ttf"),
     "Roboto-700": require("./assets/fonts/Roboto-Bold.ttf"),
   });
+
+  useEffect(() => {
+    const onChange = () => {
+      const width = Dimensions.get("window").width - 16 * 2;
+      setDimensions(width);
+    };
+    Dimensions.addEventListener("change", onChange);
+    return () => {
+      Dimensions.removeEventListener("change", onChange);
+    };
+  }, []);
 
   if (!fontsLoaded) {
     return null;
@@ -50,7 +66,11 @@ export default function App() {
             behavior={Platform.OS == "ios" ? "padding" : "height"}
           >
             <View
-              style={{ ...styles.form, marginBottom: isShowKeyboard ? 20 : 78 }}
+              style={{
+                ...styles.form,
+                marginBottom: isShowKeyboard ? 20 : 78,
+                width: dimensions,
+              }}
             >
               <View style={styles.header}>
                 <Text style={styles.textHeader}>Реєстрація</Text>
@@ -120,6 +140,7 @@ const styles = StyleSheet.create({
     flex: 1,
     resizeMode: "cover",
     justifyContent: "flex-end",
+    alignItems: "center",
   },
   header: {
     alignItems: "center",
@@ -141,7 +162,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   form: {
-    marginHorizontal: 16,
+    // marginHorizontal: 16,
   },
   btn: {
     backgroundColor: "#FF6C00",
