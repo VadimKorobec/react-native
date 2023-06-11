@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 import {} from "react-native";
-import RegistrationScreen from "./Screens/PostsScreen/RegistrationScreen";
+// import RegistrationScreen from "./Screens/PostsScreen/RegistrationScreen";
+import LoginScreen from "./Screens/PostsScreen/LoginScreen";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -17,7 +18,8 @@ export default function App() {
 
   return (
     <>
-      <RegistrationScreen />
+      {/* <RegistrationScreen /> */}
+      <LoginScreen />
     </>
   );
 }
