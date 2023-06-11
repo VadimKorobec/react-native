@@ -1,12 +1,26 @@
+import { useState } from "react";
 import {
   StyleSheet,
   ImageBackground,
   View,
   TextInput,
   Text,
+  TouchableOpacity,
+  Keyboard,
 } from "react-native";
 
+const initialState = {
+  email: "",
+  password: "",
+};
+
 export default function LoginScreen() {
+  const [state, setState] = useState(initialState);
+  const [isShowKeyboard, setIsShowKeyboard] = useState(false);
+
+  const keyboardHide = () => {
+    setIsShowKeyboard(false), Keyboard.dismiss(), setState(initialState);
+  };
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -18,8 +32,29 @@ export default function LoginScreen() {
             <View style={styles.header}>
               <Text style={styles.textHeader}>Увійти</Text>
             </View>
-            <TextInput style={styles.input} />
-            <TextInput style={styles.input} />
+            <View style={{ marginBottom: 16 }}>
+              <TextInput
+                style={styles.input}
+                textAlign="left"
+                value={state.email}
+                placeholder="Адреса електронної пошти"
+              />
+            </View>
+            <View style={{ marginBottom: 43 }}>
+              <TextInput
+                style={styles.input}
+                textAlign="left"
+                value={state.password}
+                placeholder="Пароль"
+              />
+            </View>
+            <TouchableOpacity
+              style={styles.btn}
+              activeOpacity={0.8}
+              onPress={keyboardHide}
+            >
+              <Text style={styles.btnTitle}>Увійти</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </ImageBackground>
@@ -44,8 +79,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
-    resizeMode: "contain",
-    alignItems: "center",
   },
   form: {
     marginHorizontal: 16,
@@ -69,5 +102,18 @@ const styles = StyleSheet.create({
     color: "#212121",
     paddingLeft: 16,
     fontSize: 16,
+  },
+  btn: {
+    backgroundColor: "#FF6C00",
+    height: 51,
+    borderRadius: 100,
+    marginTop: 43,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  btnTitle: {
+    color: "#fff",
+    fontSize: 16,
+    fontFamily: "Roboto-400",
   },
 });
