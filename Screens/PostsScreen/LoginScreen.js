@@ -40,16 +40,16 @@ export default function LoginScreen() {
     setIsShowKeyboard(false), Keyboard.dismiss(), setState(initialState);
   };
   return (
-    <TouchableWithoutFeedback onPress={keyboardHide}>
-      <View style={styles.container}>
-        <ImageBackground
-          style={styles.image}
-          source={require("../../assets/images/photo-bg.jpg")}
-        >
-          <View style={styles.wrapperForm}>
-            <KeyboardAvoidingView
-              behavior={Platform.OS == "ios" ? "padding" : "height"}
-            >
+    <KeyboardAvoidingView
+      behavior={Platform.OS == "ios" ? "padding" : "height"}
+    >
+      <TouchableWithoutFeedback onPress={keyboardHide}>
+        <View style={styles.container}>
+          <ImageBackground
+            style={styles.image}
+            source={require("../../assets/images/photo-bg.jpg")}
+          >
+            <View style={styles.wrapperForm}>
               <View
                 style={{
                   ...styles.form,
@@ -104,11 +104,11 @@ export default function LoginScreen() {
                   </Text>
                 </View>
               </View>
-            </KeyboardAvoidingView>
-          </View>
-        </ImageBackground>
-      </View>
-    </TouchableWithoutFeedback>
+            </View>
+          </ImageBackground>
+        </View>
+      </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
   );
 }
 
