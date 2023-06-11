@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { StatusBar } from "expo-status-bar";
+
 import {
   StyleSheet,
   View,
@@ -114,7 +114,6 @@ export default function RegistrationScreen() {
             </View>
           </KeyboardAvoidingView>
         </ImageBackground>
-        <StatusBar style="auto" />
       </View>
     </TouchableWithoutFeedback>
   );
