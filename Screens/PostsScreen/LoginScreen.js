@@ -53,7 +53,7 @@ export default function LoginScreen() {
               <View
                 style={{
                   ...styles.form,
-                  marginBottom: isShowKeyboard ? 32 : 114,
+                  marginBottom: isShowKeyboard ? 50 : 114,
                   width: dimensions,
                 }}
               >
