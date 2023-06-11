@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   StyleSheet,
   ImageBackground,
@@ -7,6 +7,10 @@ import {
   Text,
   TouchableOpacity,
   Keyboard,
+  Platform,
+  KeyboardAvoidingView,
+  TouchableWithoutFeedback,
+  Dimensions,
 } from "react-native";
 
 const initialState = {
@@ -17,61 +21,94 @@ const initialState = {
 export default function LoginScreen() {
   const [state, setState] = useState(initialState);
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
+  const [dimensions, setDimensions] = useState(
+    Dimensions.get("window").width - 16 * 2
+  );
+
+  useEffect(() => {
+    const onChange = () => {
+      const width = Dimensions.get("window").width - 16 * 2;
+      setDimensions(width);
+    };
+    Dimensions.addEventListener("change", onChange);
+    return () => {
+      Dimensions.removeEventListener("change", onChange);
+    };
+  }, []);
 
   const keyboardHide = () => {
     setIsShowKeyboard(false), Keyboard.dismiss(), setState(initialState);
   };
   return (
-    <View style={styles.container}>
-      <ImageBackground
-        style={styles.image}
-        source={require("../../assets/images/photo-bg.jpg")}
-      >
-        <View style={styles.wrapperForm}>
-          <View style={styles.form}>
-            <View style={styles.header}>
-              <Text style={styles.textHeader}>Увійти</Text>
+    <TouchableWithoutFeedback onPress={keyboardHide}>
+      <View style={styles.container}>
+        <KeyboardAvoidingView
+          behavior={Platform.OS == "ios" ? "padding" : "height"}
+        >
+          <ImageBackground
+            style={styles.image}
+            source={require("../../assets/images/photo-bg.jpg")}
+          >
+            <View style={styles.wrapperForm}>
+              <View
+                style={{
+                  ...styles.form,
+                  marginBottom: isShowKeyboard ? 32 : 114,
+                  width: dimensions,
+                }}
+              >
+                <View style={styles.header}>
+                  <Text style={styles.textHeader}>Увійти</Text>
+                </View>
+                <View style={{ marginBottom: 16 }}>
+                  <TextInput
+                    style={styles.input}
+                    textAlign="left"
+                    value={state.email}
+                    placeholder="Адреса електронної пошти"
+                    onFocus={() => setIsShowKeyboard(true)}
+                    onChangeText={(value) =>
+                      setState((prevState) => ({
+                        ...prevState,
+                        email: value,
+                      }))
+                    }
+                  />
+                </View>
+                <View style={{ marginBottom: 43 }}>
+                  <TextInput
+                    style={styles.input}
+                    textAlign="left"
+                    secureTextEntry={true}
+                    value={state.password}
+                    placeholder="Пароль"
+                    onFocus={() => setIsShowKeyboard(true)}
+                    onChangeText={(value) =>
+                      setState((prevState) => ({
+                        ...prevState,
+                        password: value,
+                      }))
+                    }
+                  />
+                </View>
+                <TouchableOpacity
+                  style={styles.btn}
+                  activeOpacity={0.8}
+                  onPress={keyboardHide}
+                >
+                  <Text style={styles.btnTitle}>Увійти</Text>
+                </TouchableOpacity>
+                <View style={styles.textWrapper}>
+                  <Text style={styles.textForm}>
+                    Немає акаунту? Зареєструватися
+                  </Text>
+                </View>
+              </View>
             </View>
-            <View style={{ marginBottom: 16 }}>
-              <TextInput
-                style={styles.input}
-                textAlign="left"
-                value={state.email}
-                placeholder="Адреса електронної пошти"
-                onFocus={() => setIsShowKeyboard(true)}
-                onChangeText={(value) =>
-                  setState((prevState) => ({ ...prevState, email: value }))
-                }
-              />
-            </View>
-            <View style={{ marginBottom: 43 }}>
-              <TextInput
-                style={styles.input}
-                textAlign="left"
-                value={state.password}
-                placeholder="Пароль"
-                onFocus={() => setIsShowKeyboard(true)}
-                onChangeText={(value) =>
-                  setState((prevState) => ({ ...prevState, password: value }))
-                }
-              />
-            </View>
-            <TouchableOpacity
-              style={styles.btn}
-              activeOpacity={0.8}
-              onPress={keyboardHide}
-            >
-              <Text style={styles.btnTitle}>Увійти</Text>
-            </TouchableOpacity>
-            <View style={styles.textWrapper}>
-              <Text style={styles.textForm}>
-                Немає акаунту? Зареєструватися
-              </Text>
-            </View>
-          </View>
-        </View>
-      </ImageBackground>
-    </View>
+          </ImageBackground>
+        </KeyboardAvoidingView>
+      </View>
+    </TouchableWithoutFeedback>
   );
 }
 
