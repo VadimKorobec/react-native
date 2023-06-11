@@ -38,6 +38,10 @@ export default function LoginScreen() {
                 textAlign="left"
                 value={state.email}
                 placeholder="Адреса електронної пошти"
+                onFocus={() => setIsShowKeyboard(true)}
+                onChangeText={(value) =>
+                  setState((prevState) => ({ ...prevState, email: value }))
+                }
               />
             </View>
             <View style={{ marginBottom: 43 }}>
@@ -46,6 +50,10 @@ export default function LoginScreen() {
                 textAlign="left"
                 value={state.password}
                 placeholder="Пароль"
+                onFocus={() => setIsShowKeyboard(true)}
+                onChangeText={(value) =>
+                  setState((prevState) => ({ ...prevState, password: value }))
+                }
               />
             </View>
             <TouchableOpacity
@@ -55,6 +63,11 @@ export default function LoginScreen() {
             >
               <Text style={styles.btnTitle}>Увійти</Text>
             </TouchableOpacity>
+            <View style={styles.textWrapper}>
+              <Text style={styles.textForm}>
+                Немає акаунту? Зареєструватися
+              </Text>
+            </View>
           </View>
         </View>
       </ImageBackground>
@@ -107,12 +120,20 @@ const styles = StyleSheet.create({
     backgroundColor: "#FF6C00",
     height: 51,
     borderRadius: 100,
-    marginTop: 43,
     justifyContent: "center",
     alignItems: "center",
+    marginBottom: 16,
   },
   btnTitle: {
     color: "#fff",
+    fontSize: 16,
+    fontFamily: "Roboto-400",
+  },
+  textWrapper: {
+    alignItems: "center",
+  },
+  textForm: {
+    color: "#1B4371",
     fontSize: 16,
     fontFamily: "Roboto-400",
   },
