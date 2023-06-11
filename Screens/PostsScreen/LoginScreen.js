@@ -42,14 +42,14 @@ export default function LoginScreen() {
   return (
     <TouchableWithoutFeedback onPress={keyboardHide}>
       <View style={styles.container}>
-        <KeyboardAvoidingView
-          behavior={Platform.OS == "ios" ? "padding" : "height"}
+        <ImageBackground
+          style={styles.image}
+          source={require("../../assets/images/photo-bg.jpg")}
         >
-          <ImageBackground
-            style={styles.image}
-            source={require("../../assets/images/photo-bg.jpg")}
-          >
-            <View style={styles.wrapperForm}>
+          <View style={styles.wrapperForm}>
+            <KeyboardAvoidingView
+              behavior={Platform.OS == "ios" ? "padding" : "height"}
+            >
               <View
                 style={{
                   ...styles.form,
@@ -104,9 +104,9 @@ export default function LoginScreen() {
                   </Text>
                 </View>
               </View>
-            </View>
-          </ImageBackground>
-        </KeyboardAvoidingView>
+            </KeyboardAvoidingView>
+          </View>
+        </ImageBackground>
       </View>
     </TouchableWithoutFeedback>
   );
