@@ -12,12 +12,12 @@ export default function Screen() {
   const [text, setText] = useState("");
   return (
     <View style={styles.container}>
-      <ImageBackground
-        style={styles.image}
-        source={require("../../assets/images/photo-bg.jpg")}
+      <KeyboardAvoidingView // визначаємо ОС та налаштовуємо поведінку клавіатури
+        behavior={Platform.OS == "ios" ? "padding" : "height"}
       >
-        <KeyboardAvoidingView // визначаємо ОС та налаштовуємо поведінку клавіатури
-          behavior={Platform.OS == "ios" ? "padding" : "height"}
+        <ImageBackground
+          style={styles.image}
+          source={require("../../assets/images/photo-bg.jpg")}
         >
           <TextInput
             placeholder="Type text"
@@ -29,13 +29,8 @@ export default function Screen() {
             value={text}
             onChangeText={setText}
           />
-          <TextInput
-            placeholder="Type text"
-            value={text}
-            onChangeText={setText}
-          />
-        </KeyboardAvoidingView>
-      </ImageBackground>
+        </ImageBackground>
+      </KeyboardAvoidingView>
     </View>
   );
 }
@@ -46,7 +41,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "flex-end",
-    paddingBottom: 30,
   },
   image: {
     flex: 1,
