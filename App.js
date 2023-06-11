@@ -5,6 +5,7 @@ import {} from "react-native";
 // import RegistrationScreen from "./Screens/PostsScreen/RegistrationScreen";
 // import LoginScreen from "./Screens/PostsScreen/LoginScreen";
 import Screen from "./Screens/PostsScreen/Screen";
+import { ScreenOne } from "./Screens/PostsScreen/ScreenOne";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -21,7 +22,8 @@ export default function App() {
     <>
       {/* <RegistrationScreen /> */}
       {/* <LoginScreen /> */}
-      <Screen />
+      {/* <Screen /> */}
+      <ScreenOne />
     </>
   );
 }
